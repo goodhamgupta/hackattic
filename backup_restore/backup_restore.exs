@@ -14,6 +14,29 @@ defmodule BackupRestore do
     # Save to disk
     File.write("data.sql", gzip_bytes)
 
+    # Wipe table
+    System.cmd("psql", [
+      "-h",
+      "0.0.0.0",
+      "-U",
+      "postgres",
+      "-d",
+      "postgres",
+      "-c",
+      "DROP SCHEMA public CASCADE;"
+    ])
+
+    System.cmd("psql", [
+      "-h",
+      "0.0.0.0",
+      "-U",
+      "postgres",
+      "-d",
+      "postgres",
+      "-c",
+      "CREATE SCHEMA public;"
+    ])
+
     # Load data
     System.cmd("psql", [
       "-h",
