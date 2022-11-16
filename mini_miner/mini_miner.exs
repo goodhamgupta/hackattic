@@ -11,8 +11,8 @@ defmodule MiniMiner do
     Enum.each(1..max_val, fn nonce ->
       cur_block = %{block | "nonce" => nonce}
       {:ok, encoded} = Jason.encode(cur_block)
-      hash = :crypto.mac(:hmac, :sha256, "#{nonce}", encoded |> String.trim())
-      <<result::size(difficulty), rest::bitstring>> = hash
+      hash = :crypto.hash(:sha256, encoded |> String.trim())
+      <<result::size(difficulty), _rest::bitstring>> = hash
 
       try do
         if result == 0 do
