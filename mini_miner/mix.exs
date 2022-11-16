@@ -3,7 +3,7 @@ defmodule Unpack.Mixfile do
 
   def project do
     [
-      app: :reading_qr,
+      app: :mini_miner,
       version: "0.0.1",
       elixir: "~> 1.14",
       deps: deps()
