@@ -34,18 +34,25 @@ defmodule PasswordHashing do
 
     {:ok, salt_bytes} = Base.decode64(salt)
 
-    sha = :sha256 |> :crypto.hash(password) |> Base.encode16()
-    pbkdf2 = password |> Pbkdf2.hash_pwd_salt(rounds: rounds, hash: hash) |> Base.encode16()
+    sha = :sha256 |> :crypto.hash(password) |> Base.encode16() |> String.downcase()
+
+    pbkdf2 =
+      password
+      |> Pbkdf2.Base.hash_password(salt_bytes,
+        rounds: rounds,
+        digest: String.to_atom(hash),
+        format: :hex
+      )
+      |> String.downcase()
 
     hmac =
-      :hmac
-      |> :crypto.mac(:sha256, salt_bytes, password)
-      |> Base.encode16()
+      :hmac |> :crypto.mac(:sha256, salt_bytes, password) |> Base.encode16() |> String.downcase()
 
     scrypt =
       password
-      |> Scrypt.hash(salt_bytes, n |> :math.log() |> round(), r, p, buflen)
+      |> Scrypt.hash(salt_bytes, n |> :math.log2() |> round(), r, p, buflen)
       |> Base.encode16()
+      |> String.downcase()
 
     response =
       Req.post!("#{@base_uri}#{@response_uri}",
