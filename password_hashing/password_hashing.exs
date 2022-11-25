@@ -6,19 +6,6 @@ defmodule PasswordHashing do
   def generate_hash do
     {:ok, response} = Req.get("#{@base_uri}#{@request_uri}")
 
-    # %{
-    #   "password" => "rosebud5750",
-    #   "pbkdf2" => %{"hash" => "sha256", "rounds" => 650_000},
-    #   "salt" => "r5KjsJeQoOyY427oyeo=",
-    #   "scrypt" => %{
-    #     "N" => 1_048_576,
-    #     "_control" => "b19a18ea8a50a861d08eb94be602f6cbfe67ab98d2021400a3b83fbe3b8ba698",
-    #     "buflen" => 32,
-    #     "p" => 2,
-    #     "r" => 8
-    #   }
-    # } = response.body
-
     %{
       "password" => password,
       "pbkdf2" => %{"hash" => hash, "rounds" => rounds},
