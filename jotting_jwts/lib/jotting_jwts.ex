@@ -1,0 +1,2 @@
+defmodule JottingJwts do
+end
