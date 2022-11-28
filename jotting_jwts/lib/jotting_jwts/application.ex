@@ -40,6 +40,8 @@ defmodule JottingJwts.Application do
   end
 
   defp create_table do
-    :ets.new(@table, [:set, :protected, :named_table])
+    :ets.new(@table, [:set, :public, :named_table])
+    # Insert default value
+    :ets.insert(@table, {:append, ""})
   end
 end

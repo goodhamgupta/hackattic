@@ -4,9 +4,8 @@ defmodule JottingJwts.Router do
 
   # plug(Plug.Parsers, parsers: [:json], json_decoder: Poison, paths: ["/"])
   plug(Plug.Parsers,
-    parsers: [:json],
-    pass: ["text/*"],
-    json_decoder: Poison
+    pass: ["*/*"],
+    parsers: [:urlencoded, :multipart]
   )
 
   plug(:match)
