@@ -22,7 +22,10 @@ defmodule JottingJwts.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:plug_cowboy, "~> 2.0"}
+      {:joken, "~> 2.5"},
+      {:req, "~> 0.3.0"},
+      {:plug_cowboy, "~> 2.0"},
+      {:poison, "~> 5.0"}
     ]
   end
 end

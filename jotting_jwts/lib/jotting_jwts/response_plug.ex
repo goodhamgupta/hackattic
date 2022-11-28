@@ -9,7 +9,7 @@ defmodule JottingJwts.ResponsePlug do
 
   def call(conn, _opts) do
     conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(200, "Thug life")
+    |> put_resp_content_type("application/json")
+    |> send_resp(200, Poison.encode!(%{shampoo: "ned it"}))
   end
 end
