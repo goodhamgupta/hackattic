@@ -1,5 +1,6 @@
 defmodule JottingJwts.ConcatenatePlug do
   import Plug.Conn
+  require Logger
 
   alias JottingJwts.Token
 
@@ -26,14 +27,11 @@ defmodule JottingJwts.ConcatenatePlug do
     |> send_resp(200, Poison.encode!(%{solution: value}))
   end
 
-  defp process(%{"append" => append, "exp" => _exp}) do
+  defp process(map) do
+    append = Map.get(map, "append", "")
     [append: value] = :ets.lookup(@table, :append)
     new_val = "#{value}#{append}"
     :ets.insert(@table, {:append, new_val})
-  end
-
-  defp process(_map) do
-    [append: value] = :ets.lookup(@table, :append)
-    value
+    new_val
   end
 end

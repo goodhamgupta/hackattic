@@ -18,9 +18,6 @@ defmodule JottingJwts do
         json: %{app_url: @public_url}
       )
 
-    require IEx
-    IEx.pry()
-
     if response.status == 200 do
       Logger.info("App URL submission success")
     else
