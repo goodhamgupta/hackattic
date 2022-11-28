@@ -32,6 +32,8 @@ defmodule JottingJwts.Application do
 
     JottingJwts.submit_url()
 
+    delete_table()
+
     resp
   end
 
@@ -43,5 +45,9 @@ defmodule JottingJwts.Application do
     :ets.new(@table, [:set, :public, :named_table])
     # Insert default value
     :ets.insert(@table, {:append, ""})
+  end
+
+  defp delete_table do
+    :ets.delete(@table)
   end
 end
