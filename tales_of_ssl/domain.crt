@@ -1,0 +1,39 @@
+Certificate Request:
+    Data:
+        Version: 0 (0x0)
+        Subject: CN=damp-mountain-3844.gov, C=CX
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (1024 bit)
+                Modulus:
+                    00:b9:2e:9f:a1:9a:14:0e:66:bb:71:6a:90:b9:a2:
+                    f2:41:49:7c:be:77:c9:66:cc:19:35:c5:7e:5d:67:
+                    c2:1a:dc:83:4c:bd:2d:d9:a4:33:07:89:9d:a5:5a:
+                    4d:d5:c7:e1:2f:7a:d8:d7:cc:d4:34:30:30:37:37:
+                    f8:68:0e:5e:29:ca:cf:aa:c4:c7:20:9a:e9:87:c5:
+                    c2:c3:54:ee:d8:6e:ba:32:dc:9a:1c:73:f5:3b:7a:
+                    5a:8a:0a:3e:9b:13:b2:bb:d9:90:d8:80:85:e2:7a:
+                    a7:3c:37:02:60:6a:fa:17:75:2b:28:ab:0a:3b:d9:
+                    bb:0d:fb:81:d5:06:d4:a6:6d
+                Exponent: 65537 (0x10001)
+        Attributes:
+            a0:00
+    Signature Algorithm: sha256WithRSAEncryption
+         51:6c:80:8b:4d:12:68:f8:d7:81:e2:cb:5e:42:be:a3:80:2c:
+         72:2e:f7:be:de:3e:b0:9d:55:81:d0:8d:07:d3:06:f8:ec:8a:
+         34:56:e2:71:66:9a:62:60:2e:fb:8c:47:52:6a:ce:1e:cf:80:
+         23:63:93:fd:29:0d:fd:b1:2c:9c:0d:25:c7:3d:70:b2:d5:06:
+         02:21:4b:31:b2:a2:78:31:e3:8f:4b:c9:40:6f:83:87:dd:72:
+         98:9d:18:64:97:9e:f0:1e:fa:1b:e5:94:83:fc:dc:fd:33:82:
+         2b:3a:67:56:f5:24:9d:65:8d:81:a6:f7:dd:f1:f3:15:e2:82:
+         e6:51
+-----BEGIN CERTIFICATE REQUEST-----
+MIIBbTCB1wIBADAuMR8wHQYDVQQDDBZkYW1wLW1vdW50YWluLTM4NDQuZ292MQsw
+CQYDVQQGEwJDWDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAuS6foZoUDma7
+cWqQuaLyQUl8vnfJZswZNcV+XWfCGtyDTL0t2aQzB4mdpVpN1cfhL3rY18zUNDAw
+Nzf4aA5eKcrPqsTHIJrph8XCw1Tu2G66MtyaHHP1O3paigo+mxOyu9mQ2ICF4nqn
+PDcCYGr6F3UrKKsKO9m7DfuB1QbUpm0CAwEAAaAAMA0GCSqGSIb3DQEBCwUAA4GB
+AFFsgItNEmj414Hiy15CvqOALHIu977ePrCdVYHQjQfTBvjsijRW4nFmmmJgLvuM
+R1Jqzh7PgCNjk/0pDf2xLJwNJcc9cLLVBgIhSzGyongx449LyUBvg4fdcpidGGSX
+nvAe+hvllIP83P0zgis6Z1b1JJ1ljYGm993x8xXiguZR
+-----END CERTIFICATE REQUEST-----
