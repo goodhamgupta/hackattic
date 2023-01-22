@@ -13,26 +13,29 @@ defmodule TalesOfSsl do
     IO.puts(domain)
     IO.puts(serial_number)
     IO.puts(country)
-    {certificate, exit_code} = System.cmd("openssl", [
+    System.cmd("openssl", [
       "req",
       "-new",
       "-key",
       "private.key",
       "-outform",
-      "DER",
+      "PEM",
       "-set_serial",
       "#{serial_number}",
       "-subj",
       "/CN=#{domain}/C=#{country_code}/",
+      "-out",
+      "domain.csr"
     ])
+    {certificate, exit_code} = System.cmd("openssl", ["req", "-in", "domain.csr", "-text", "-noout"])
     IO.puts(certificate)
     response = Req.post!("#{@base_uri}#{@response_uri}", json: %{certificate: Base.encode64(certificate)})
 
-    IO.inspect(response)
-    if response.status == 200 do
+    if response.status == 200 and !Map.has_key?(response.body, "rejected") do
       IO.puts("Solution accepted")
     else
       IO.puts("Solution not accepted")
+      IO.inspect(response)
     end
 
   end
