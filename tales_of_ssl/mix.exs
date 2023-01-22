@@ -15,9 +15,7 @@ defmodule Unpack.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [
-       {:req, "~> 0.3.0"},
-       {:countries, "~> 1.6"}
+      {:req, "~> 0.3.0"}
     ]
   end
-
 end

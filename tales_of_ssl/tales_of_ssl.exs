@@ -8,25 +8,33 @@ defmodule TalesOfSsl do
     {:ok, response} = Req.get("#{@base_uri}#{@request_uri}")
     %{"private_key" => private_key, "required_data" => %{"domain" => domain, "serial_number" => serial_number, "country" => country}} = response.body
     rsa_key = "-----BEGIN RSA PRIVATE KEY----- \n#{private_key}\n-----END RSA PRIVATE KEY-----"
-    country_code = Countries.filter_by(:name, country) |> List.first() |> Map.get(:alpha2)
+    country_code = country |> String.split(" ") |> Enum.map(fn x -> String.first(x) end) |> Enum.join()
     :ok = File.write("private.key", rsa_key)
-    System.cmd("openssl", [
+    IO.puts(domain)
+    IO.puts(serial_number)
+    IO.puts(country)
+    {certificate, exit_code} = System.cmd("openssl", [
       "req",
       "-new",
       "-key",
       "private.key",
       "-outform",
-      "PEM",
-      "-verify",
+      "DER",
       "-set_serial",
       "#{serial_number}",
       "-subj",
       "/CN=#{domain}/C=#{country_code}/",
-      "-out",
-      "domain.crt",
-      "-verbose",
-      "-text"
     ])
+    IO.puts(certificate)
+    response = Req.post!("#{@base_uri}#{@response_uri}", json: %{certificate: Base.encode64(certificate)})
+
+    IO.inspect(response)
+    if response.status == 200 do
+      IO.puts("Solution accepted")
+    else
+      IO.puts("Solution not accepted")
+    end
+
   end
 end
 
