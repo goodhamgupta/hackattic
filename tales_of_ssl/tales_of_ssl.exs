@@ -7,27 +7,19 @@ defmodule TalesOfSsl do
   def generate do
     {:ok, response} = Req.get("#{@base_uri}#{@request_uri}")
     %{"private_key" => private_key, "required_data" => %{"domain" => domain, "serial_number" => serial_number, "country" => country}} = response.body
-    rsa_key = "-----BEGIN RSA PRIVATE KEY----- \n#{private_key}\n-----END RSA PRIVATE KEY-----"
+    rsa_key = "-----BEGIN RSA PRIVATE KEY-----\n#{private_key}\n-----END RSA PRIVATE KEY-----"
     country_code = country |> String.split(" ") |> Enum.map(fn x -> String.first(x) end) |> Enum.join()
-    :ok = File.write("private.key", rsa_key)
-    IO.puts(domain)
-    IO.puts(serial_number)
-    IO.puts(country)
-    System.cmd("openssl", [
+    :ok = File.write("./ssl/private.key", rsa_key)
+    {certificate, _} = System.cmd("openssl", [
       "req",
       "-new",
       "-key",
-      "private.key",
-      "-outform",
-      "PEM",
+      "./ssl/private.key",
       "-set_serial",
       "#{serial_number}",
       "-subj",
-      "/CN=#{domain}/C=#{country_code}/",
-      "-out",
-      "domain.csr"
+      "/CN=#{domain}/C=#{country_code}/"
     ])
-    {certificate, exit_code} = System.cmd("openssl", ["req", "-in", "domain.csr", "-text", "-noout"])
     IO.puts(certificate)
     response = Req.post!("#{@base_uri}#{@response_uri}", json: %{certificate: Base.encode64(certificate)})
 
