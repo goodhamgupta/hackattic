@@ -1,8 +1,8 @@
 defmodule TalesOfSsl do
 
   @base_uri "https://hackattic.com/challenges/tales_of_ssl/"
-  @request_uri "problem?access_token=972b50c2c093c1f8"
-  @response_uri "solve?access_token=972b50c2c093c1f8"
+  @request_uri "problem?access_token=#{Application.compile_env(:tales_of_ssl, :token, "test")}"
+  @response_uri "solve?access_token=#{Application.compile_env(:tales_of_ssl, :token, "test")}"
 
   def generate do
     {:ok, response} = Req.get("#{@base_uri}#{@request_uri}")
@@ -28,8 +28,8 @@ defmodule TalesOfSsl do
       IO.puts("Solution accepted")
     else
       IO.puts("Solution not accepted")
-      IO.inspect(response)
     end
+    IO.inspect(response)
 
   end
 end

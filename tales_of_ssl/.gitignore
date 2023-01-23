@@ -24,4 +24,4 @@ tales_of_ssl-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
-private.key
+credentials.txt
