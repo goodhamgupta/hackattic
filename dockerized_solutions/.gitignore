@@ -20,9 +20,9 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-tales_of_ssl-*.tar
+dockerized_solutions-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
-credentials.txt
-ssl/*
+auth/*
+data/*
