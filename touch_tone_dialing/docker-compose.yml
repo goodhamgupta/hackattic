@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  ubuntu:
+    image: ubuntu:23.04
+    restart: on-failure
+    command: ["sleep","infinity"]
+    volumes:
+      - ./data:/data

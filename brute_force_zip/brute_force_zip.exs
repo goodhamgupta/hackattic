@@ -9,8 +9,6 @@ defmodule BruteForceZip do
     {:ok, {_status, _headers, bytes}} = :httpc.request(:get, {url, []}, [], [])
     :ok = File.write("input.zip", bytes)
 
-    require IEx
-    IEx.pry()
   end
 end
 
